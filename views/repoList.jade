@@ -1,0 +1,27 @@
+extend layout
+
+block pageTitle
+
+  h1.page-header Repos
+
+  block pageContent
+    .row
+      .col-md-offset-3.col-md-6
+        ul.media-list
+          each repo in repos
+            .media
+              .media-left
+                a(href='#{repo.owner.html_url}')
+                  img(class='media-object thumbnail', src='#{repo.owner.avatar_url}')
+              .media-body
+                a(href='/repo/view/' + repo.id)
+                  h4 #{repo.full_name}
+                    a(href='#{repo.html_url}', class='btn btn-primary btn-sm glyphicon glyphicon-home pull-right')   Home
+                - if (repo.description != '') {
+                p #{repo.description}
+                - } else {
+                p.text-warning
+                  em *description missing*
+                - }
+
+            hr

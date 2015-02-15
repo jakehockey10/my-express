@@ -1,0 +1,23 @@
+extend layout
+
+block pageTitle
+
+  .row
+    .col-md-offset-1.col-md-10
+      h1.page-header #{item.type} 
+
+      block pageContent
+        .row
+          .col-md-offset-3.col-md-6
+            img(class='thumbnail img-responsive center-block', src='#{item.actor.avatar_url}')
+            dl.dl-horizontal
+              dt Repository
+              dd
+                a(href='#{item.repo.url}') #{item.repo.name}
+              dt Created at
+              dd #{item.created_at}
+              dt Organization
+              dd
+                | #{item.org.login} 
+                br
+                img(src='#{item.org.avatar_url}')

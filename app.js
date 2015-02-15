@@ -22,8 +22,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// load routes for repos, events, pulls, and issues
 app.use('/', routes);
 app.use('/users', users);
+
+// dburl to a mongodb server hosted in the cloud
+var dburl = 'mongodb://github:1234@ds041871.mongolab.com:41871/github';
+
+// get db
+var db = require('monk')(dburl);
+
+// set the database
+app.db = db;
+
+require('./mongo/repoList.js')(app)
+require('./mongo/repoView.js')(app)
+require('./mongo/eventList.js')(app)
+require('./mongo/eventView.js')(app)
+
+app.set('port', (process.env.PORT || 3000));
+
+var server = app.listen(app.get('port'), function() {
+    var host = server.address().address
+    var port = server.address().port
+    console.log('App listening at http://%s:%s', host, port);
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

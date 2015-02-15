@@ -1,0 +1,24 @@
+extend layout
+
+block pageTitle
+
+  h1.page-header Events
+
+  block pageContent
+    .row
+      .col-md-offset-3.col-md-6
+        ul.media-list
+          each item in events
+            .media
+              .media-left
+                a(href='#{item.actor.url}')
+                  img(class='media-object thumbnail', src='#{item.actor.avatar_url}', height='120', width='120')
+              .media-body
+                a(href='/event/view/#{item.id}')
+                  h4 #{item.type.substr(0, item.type.length - 5)}
+                dl
+                  dt Repository 
+                  dd #{item.repo.name}
+                  dt Created at
+                  dd #{item.created_at}
+            hr
