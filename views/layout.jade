@@ -13,7 +13,7 @@ html
     //Latest compiled and minified CSS
     link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css")
     //Optional theme
-    //link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css")
     //Latest compiled and minified JavaScript
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js")
   body
@@ -37,5 +37,6 @@ html
                             a(href='/list/pulls') Pulls
                         li
                             a(href='/list/issues') Issues
-    block pageTitle
+    .container
+        block pageTitle
 
